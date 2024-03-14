@@ -59,7 +59,7 @@ a {
 .show-menu {
   height: 10rem;
 }
-
+/* 800 or more 800 */
 @media (min-width: 800px) {
   .nav-main {
     max-width: 1170px;
