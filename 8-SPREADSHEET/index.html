@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clickable Cells</title>
+    <style>
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        cursor: pointer;
+        width: 150px; /* Set fixed width for cells */
+        height: 50px; /* Set fixed height for cells */
+      }
+
+      input {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        outline: none;
+        border-style: unset;
+      }
+
+      .focused {
+        background-color: #c0c0c0; /* Change background color when focused */
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td id="cell1"></td>
+        <td id="cell2"></td>
+        <!-- Add more cells as needed -->
+      </tr>
+    </table>
+
+    <script>
+      let focusedCell = null;
+
+      // Function to handle clicks on cells
+      function handleCellClick(cellId) {
+        let cell = document.getElementById(cellId);
+
+        // If this cell is already focused, enable input
+        if (cell === focusedCell) {
+          // Create input element
+          let input = document.createElement('input');
+          input.type = 'text';
+
+          // Set input value to cell's text
+          input.value = cell.innerText;
+
+          // Clear cell content
+          cell.innerHTML = '';
+
+          // Append input to cell
+          cell.appendChild(input);
+
+          // Focus the input
+          input.focus();
+
+          // Add focused class to highlight the cell
+          cell.classList.add('focused');
+
+          // Remove focused class when input loses focus
+          input.addEventListener('blur', () => {
+            cell.classList.remove('focused');
+            saveInput(cell, input.value);
+          });
+
+          // Save input on Enter key press
+          input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              cell.classList.remove('focused');
+              saveInput(cell, input.value);
+            }
+          });
+        } else {
+          // Reset previous cell if any
+          if (focusedCell) {
+            focusedCell.classList.remove('focused');
+          }
+
+          // Set this cell as focused
+          focusedCell = cell;
+
+          // Add focused class to highlight the cell
+          cell.classList.add('focused');
+        }
+      }
+
+      // Function to save input data
+      function saveInput(cell, value) {
+        // Update cell content with input value
+        cell.innerText = value;
+      }
+
+      // Add event listeners to cells
+      document
+        .getElementById('cell1')
+        .addEventListener('click', () => handleCellClick('cell1'));
+      document
+        .getElementById('cell2')
+        .addEventListener('click', () => handleCellClick('cell2'));
+      // Add more event listeners for other cells as needed
+    </script>
+  </body>
+</html>
