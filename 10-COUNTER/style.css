@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+.value {
+  font-size: 6rem;
+}
+.danger {
+  color: red;
+  background-color: rgb(207, 187, 187);
+  align-items: center;
+  border-radius: 5px;
+}
+.secondary {
+  color: rgb(0, 0, 0);
+}
+.success {
+  color: rgb(0, 136, 255);
+  background-color: aliceblue;
+}
