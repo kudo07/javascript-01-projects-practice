@@ -1,0 +1,21 @@
+When the "next" button is clicked, currentImg is incremented before calling updateImg(). This means that currentImg reflects the index of the next image to be displayed.
+
+However, in the line imageContainerEl.style.transform = translateX(-${(currentImg - 1) * 500}px);, (currentImg - 1) is used to calculate the correct horizontal offset for the image. This is because CSS transform uses a zero-based index for positioning elements, while currentImg starts from 1.
+
+So, subtracting 1 from currentImg ensures that the correct index is used for the image's position calculation, aligning it with the expected behavior of transform and the image indices.
+
+2)
+When we calculate translateX(-1 * 500px), it moves the image to the left, not to the right.
+
+The translateX function in CSS moves an element horizontally along the X-axis.
+
+When the value is negative, it moves the element to the left.
+When the value is positive, it moves the element to the right.
+So, translateX(-500px) moves the image 500 pixels to the left.
+
+In the context of an image slider, this means that the next image in the sequence will appear from the left-hand side of the container, sliding in from left to right.
+means the image goes to the right or left-hand side of the container
+
+
+
+
